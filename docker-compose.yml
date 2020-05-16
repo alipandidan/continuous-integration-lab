@@ -11,6 +11,7 @@ services:
       - ./jenkins/casc:/tmp/casc
     environment:
       - CASC_JENKINS_CONFIG=/tmp/casc/jenkins.yaml
+    env_file: .env
     restart: always
   nginx:
     image: nginx:stable
