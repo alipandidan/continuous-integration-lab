@@ -2,9 +2,6 @@ jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -21,23 +18,8 @@ jenkins:
   projectNamingStrategy: "standard"
   quietPeriod: 5
   remotingSecurity:
-    enabled: true
+    enabled: false
   scmCheckoutRetryCount: 0
-  securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "admin"
-        name: "Admin"
-        properties:
-        - "apiToken"
-        - "myView"
-        - preferredProvider:
-            providerId: "default"
-        - "timezone"
-        - mailer:
-            emailAddress: "admin@domain.local"
   slaveAgentPort: 50000
   updateCenter:
     sites:
@@ -52,6 +34,8 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
   sSHD:
     port: -1
 unclassified:
@@ -60,6 +44,8 @@ unclassified:
     - "jobBuildDiscarder"
   buildStepOperation:
     enabled: false
+  casCGlobalConfig:
+    configurationPath: "/tmp/jenkins.yml"
   defaultFolderConfiguration:
     healthMetrics:
     - worstChildHealthMetric:
@@ -89,7 +75,6 @@ unclassified:
     useExistingAccountWithSameEmail: false
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://localhost:81/"
   mailer:
     charset: "UTF-8"
     useSsl: false
@@ -105,4 +90,5 @@ tool:
     installations:
     - home: "git"
       name: "Default"
-
+jobs:
+  - file: /tmp/jobs-seed.groovy
