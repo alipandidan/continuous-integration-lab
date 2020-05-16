@@ -7,16 +7,76 @@ credentials:
           password: ${GITHUB_PASS}
           scope: GLOBAL
           username: ${GITHUB_USER}
+      - azure:
+          azureEnvironmentName: "Azure"
+          clientId: ${AZURE_CLIENT_ID}
+          clientSecret: ${AZURE_CLIENT_SECRET}
+          id: "azure-service-principal"
+          scope: GLOBAL
+          subscriptionId: ${AZURE_SUBSCRIPTION_ID}
+          tenant: ${AZURE_TENANT_ID}
+      - usernamePassword:
+          id: "jenkins-agents-credentials"
+          password: ${JENKINS_AGENT_PASS}
+          scope: GLOBAL
+          username: ${JENKINS_AGENT_USER}
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
+  clouds:
+  - azureVM:
+      azureCredentialsId: "azure-service-principal"
+      cloudName: "AwesomeCloud"
+      cloudTags:
+      - name: "department"
+        value: "devops"
+      configurationStatus: "pass"
+      deploymentTimeout: 1200
+      maxVirtualMachinesLimit: 10
+      newResourceGroupName: "jenkins-agents"
+      resourceGroupReferenceType: "new"
+      vmTemplates:
+      - agentLaunchMethod: "SSH"
+        agentWorkspace: "/tmp/jenkins"
+        builtInImage: "Ubuntu 16.04 LTS"
+        credentialsId: "jenkins-agents-credentials"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        enableMSI: false
+        enableUAMI: false
+        ephemeralOSDisk: false
+        executeInitScriptAsRoot: true
+        imageTopLevelType: "basic"
+        installDocker: false
+        installGit: false
+        installMaven: false
+        javaPath: "java"
+        labels: "ubuntu"
+        location: "North Europe"
+        newStorageAccountName: "realjenkinsstorag"
+        noOfParallelJobs: 1
+        osDiskSize: 0
+        osType: "Linux"
+        preInstallSsh: true
+        retentionStrategy:
+          azureVMCloudRetentionStrategy:
+            idleTerminationMinutes: 10
+        shutdownOnIdle: false
+        storageAccountNameReferenceType: "new"
+        storageAccountType: "Premium_LRS"
+        templateDisabled: false
+        templateName: "ubuntu"
+        usageMode: "Only build jobs with label expressions matching this node"
+        usePrivateIP: false
+        virtualMachineSize: "Standard_B1s"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
   - name: "master"
+  - name: "ubuntu"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"

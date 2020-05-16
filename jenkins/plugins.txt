@@ -76,3 +76,4 @@ snakeyaml-api:1.26.4
 configuration-as-code:1.40
 configuration-as-code-groovy:1.1
 job-dsl:1.77
+azure-vm-agents:1.5.0
