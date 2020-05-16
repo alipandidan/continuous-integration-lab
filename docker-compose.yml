@@ -8,8 +8,9 @@ services:
     container_name: jenkins
     volumes:
       - ./jenkins_home:/var/jenkins_home
+      - ./jenkins/jenkins.yaml:/tmp/jenkins.yaml
     environment:
-      - PRODUCTION=TEST
+      - CASC_JENKINS_CONFIG=/tmp/jenkins.yaml
     restart: always
   nginx:
     image: nginx:stable
