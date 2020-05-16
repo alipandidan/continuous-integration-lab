@@ -91,4 +91,4 @@ tool:
     - home: "git"
       name: "Default"
 jobs:
-  - file: /tmp/jobs-seed.groovy
+  - file: /tmp/casc/jobs-seed.groovy

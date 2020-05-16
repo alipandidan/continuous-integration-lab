@@ -6,12 +6,6 @@ branchSources {
         scanCredentialsId('github-credentials')
         repoOwner('pandidan')
         repository('swedbank-exercise')
-
-        traits {
-            BranchDiscoveryTrait {
-                strategyId(1)
-            }
-        }
     }
 }
 orphanedItemStrategy {
