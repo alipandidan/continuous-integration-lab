@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+    environment:
+      - PRODUCTION=TEST
+    restart: always
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    restart: always
