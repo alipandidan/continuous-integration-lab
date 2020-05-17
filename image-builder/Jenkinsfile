@@ -14,7 +14,7 @@ pipeline {
                     // Mounting passwd and groups along with overriding HOME environment variable are workarounds for ansible and packer failing to connect
                     packerAnsbile.inside("-e \"HOME=${WORKSPACE}\" -v /etc/passwd:/etc/passwd -v /etc/group:/etc/group") {
                         withCredentials([azureServicePrincipal('azure-service-principal')]) {
-                            sh 'packer build image-builder/ubuntu-packer.json'
+                            sh 'packer build -color=false image-builder/ubuntu-packer.json'
                         }
                     }
                 }
