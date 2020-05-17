@@ -1,0 +1,28 @@
+---
+- name: Instal dependencies
+  apt:
+    name: openjdk-11-jdk
+    state: present
+    update_cache: yes
+
+- name: "Make sure {{ install_dir.linux }} directory exists"
+  file:
+    path: "{{ install_dir.linux }}"
+    state: directory
+
+- name: "Download and unarchive Android SDK command line tools"
+  unarchive: 
+    copy: no
+    src: "{{ download_url.linux }}"
+    dest: "{{ install_dir.linux }}"
+    force: yes
+    mode: 0755
+
+# TODO: Use fancy expect module
+- name: "Install required packages"
+  shell: "echo y | {{ install_dir.linux }}/tools/bin/sdkmanager {{ required_packages | map('quote') | join(' ') }}"
+
+- name: Add command line tools to PATH
+  copy:
+    dest: /etc/profile.d/sdkmanager.sh
+    content: 'PATH=$PATH:{{ install_dir.linux }}/tools/bin/'

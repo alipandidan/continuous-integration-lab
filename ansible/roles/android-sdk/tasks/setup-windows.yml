@@ -1,0 +1,29 @@
+---
+- name: "Install jre"
+  win_chocolatey:
+    name: openjdk
+    version: "11.0.2.01"
+
+- name: "Make sure {{ install_dir.windows }} directory exists"
+  win_file:
+    path: "{{ install_dir.windows }}"
+    state: directory
+
+- name: Download Android SDK command line tools
+  win_get_url:
+    url: "{{ download_url.windows }}"
+    dest: "{{ install_dir.windows }}/CommandLineTools.zip"
+
+- name: "Unzip Android SDK command line tools"
+  win_unzip: 
+    src: "{{ install_dir.windows }}/CommandLineTools.zip"
+    dest: "{{ install_dir.windows }}"
+    delete_archive: yes
+
+- name: "Install required packages"
+  win_shell: "echo y | {{ install_dir.windows }}\\tools\\bin\\sdkmanager.bat {{ required_packages | map('quote') | join(' ') }}"
+
+- name: Add command line tools to path
+  win_path:
+    elements:
+    - "{{ install_dir.windows }}\\tools\\bin"

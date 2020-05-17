@@ -1,0 +1,15 @@
+---
+install_dir:
+  linux: /opt/android/cmdline-tools
+  windows: C:\android\cmdline-tools
+  macosx: /opt/android/cmdline-tools
+
+download_url:
+  linux: https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip
+  windows: https://dl.google.com/android/repository/commandlinetools-win-6200805_latest.zip
+  macosx: https://dl.google.com/android/repository/commandlinetools-mac-6200805_latest.zip
+
+required_packages: 
+  - build-tools;29.0.2
+  - platform-tools
+  - platforms;android-28

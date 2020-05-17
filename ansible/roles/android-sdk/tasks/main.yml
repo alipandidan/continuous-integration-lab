@@ -1,0 +1,8 @@
+---
+- name: Include the task based on OS distribution
+  include: "setup-{{item | lower}}.yml"
+  with_items:
+    - Ubuntu
+    - Windows
+    - MacOSX 
+  when: (item in ansible_distribution)
