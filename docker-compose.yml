@@ -21,3 +21,11 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     restart: always
+  smee:
+    container_name: smee
+    build:
+      context: ./smee
+      dockerfile: Dockerfile
+    image: smee
+    command: ["--url","https://smee.io/cx5EuEHzhf5eY9H9", "--target", "http://jenkins:8080/github-webhook/"]
+    restart: always
