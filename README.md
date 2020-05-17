@@ -30,7 +30,7 @@ Locate the file `plugins.txt` under `./jenkins/casc/` and add plugins in the fol
 
 ### Webhook delivery
 
-We're using Smee for webhook delivery. Create a new channel on smee.io and replace it with `SMEE_URL` in `.env` file, also do the same thing in you're repository's Webhook settings.
+We're using Smee for webhook delivery. Create a new channel on [smee.io](smee.io) and replace it with `SMEE_URL` in `.env` file, also do the same thing in you're repository's Webhook settings.
 
 #### Example
 
@@ -44,9 +44,9 @@ blueocean:1.23.2
 
 Update Jenkins configuration not from UI but within the `jenkins.yaml` located under `./jenkins/casc/` to keep track of changes.
 
-#### Cloud configuration
+#### Cloud configurations
 
-Type and number of Azure virtual machine pools can be adjusted from `jenkins.yaml` file. You can easily add more cloud configurations in different regions and sizes
+Type and number of Azure virtual machine pools along with several other settings can be adjusted from `jenkins.yaml` file. You can easily add more cloud configurations in different regions and sizes
 
 ### Nginx
 
