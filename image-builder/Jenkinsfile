@@ -14,12 +14,11 @@ pipeline {
                     def packerAnsbile = docker.build("packer-ansible", 'image-builder') 
 
                     packerAnsbile.inside {
-                        sh 'packer --version'
+                        withCredentials([azureServicePrincipal('azure-service-principal')]) {
+                            sh 'packer build image-builder/ubuntu-packer.json'
+                        }
                     }
 
-                    // docker.image('ubuntu:18.04').inside {
-                    //     sh 'ls'
-                    // }
                 }
                 
             }
