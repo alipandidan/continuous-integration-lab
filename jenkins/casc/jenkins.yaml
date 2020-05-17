@@ -143,6 +143,26 @@ unclassified:
     createAccountBasedOnEmail: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
+  globalLibraries:
+    libraries:
+    - defaultVersion: "master"
+      includeInChangesets: false
+      name: "jenkins-libraries"
+      retriever:
+        modernSCM:
+          scm:
+            github:
+              configuredByUrl: true
+              credentialsId: "github-credentials"
+              id: "bf9cfa21-b57e-4c5b-9982-01973655a24e"
+              repoOwner: "pandidan"
+              repository: "jenkins-shared-library"
+              repositoryUrl: "https://github.com/pandidan/jenkins-shared-library.git"
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 3
+              - originPullRequestDiscoveryTrait:
+                  strategyId: 1
   location:
     adminAddress: "admin@domain.local"
     url: "http://localhost:81/"
