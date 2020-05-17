@@ -163,3 +163,5 @@ tool:
       name: "Default"
 jobs:
   - file: /tmp/casc/jobs-seed.groovy
+groovy:
+  - file: /tmp/casc/enable-security.groovy
