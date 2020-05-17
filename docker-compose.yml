@@ -27,5 +27,6 @@ services:
       context: ./smee
       dockerfile: Dockerfile
     image: smee
-    command: ["--url","https://smee.io/cx5EuEHzhf5eY9H9", "--target", "http://jenkins:8080/github-webhook/"]
+    env_file: .env
+    command: ["--url","${SMEE_URL}", "--target", "http://jenkins:8080/github-webhook/"]
     restart: always
