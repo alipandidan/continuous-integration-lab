@@ -5,7 +5,7 @@ branchSources {
         id('12312313') // IMPORTANT: use a constant and unique identifier
         scanCredentialsId('github-credentials')
         repoOwner('pandidan')
-        repository('swedbank-exercise')
+        repository('continuous-integration-lab')
     }
 }
 orphanedItemStrategy {
@@ -27,7 +27,7 @@ pipelineJob('UbuntuImageBuilder') {
         scm {
         git {
             remote {
-                github('pandidan/swedbank-exercise')
+                github('pandidan/continuous-integration-lab')
                 credentials('github-credentials')
             }
             branches('master')
