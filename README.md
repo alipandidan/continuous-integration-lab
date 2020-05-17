@@ -1,6 +1,7 @@
 # Continuous Integration Lab
 
-Here we keep a collection of basic tools and services to quickly set up a CI server with one single command.
+Here we keep a collection of basic tools and services to quickly set up a CI server with one single command. It is intended to offer a Jenkins server fully controllable from code, integrated with Azure with the possibility to create Azure virtual machine images using Ansible and Packer from a pre-configured job and facilitating GitHub checks and webhook deliveries. 
+It is expected to eliminate the need to keep Jenkins data directory by generating jobs from JobDSL seeds at runtime. No configuration should be needed to be changed from UI unless for testing purposes. It is also possible to run startup groovy scripts to make changes that are not supported by Jenkins configuration as code plugin.
 
 I highly encourage you to read the story behind this repository. It's available [here](STORY.md)
 
@@ -28,10 +29,6 @@ Locate the file `plugins.txt` under `./jenkins/casc/` and add plugins in the fol
 
 `plugin-name:SemVer`
 
-### Webhook delivery
-
-We're using Smee for webhook delivery. Create a new channel on [smee.io](smee.io) and replace it with `SMEE_URL` in `.env` file, also do the same thing in you're repository's Webhook settings.
-
 #### Example
 
 ```text
@@ -39,6 +36,10 @@ job-dsl:1.77
 azure-vm-agents:1.5.0
 blueocean:1.23.2
 ```
+
+### Webhook delivery
+
+We're using Smee for webhook delivery. Create a new channel on [smee.io](smee.io) and replace it with `SMEE_URL` in `.env` file, also do the same thing in you're repository's Webhook settings.
 
 ### Jenkins configuration as code (JCasC)
 
