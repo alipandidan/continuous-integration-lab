@@ -11,7 +11,7 @@ pipeline {
             steps {   
                 script {
 
-                    def packerAnsbile = docker.build("packer-ansible") 
+                    def packerAnsbile = docker.build("packer-ansible", 'image-builder') 
 
                     packerAnsbile.inside {
                         sh 'packer --version'
