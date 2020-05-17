@@ -77,3 +77,4 @@ configuration-as-code:1.40
 configuration-as-code-groovy:1.1
 job-dsl:1.77
 azure-vm-agents:1.5.0
+blueocean:1.23.2
