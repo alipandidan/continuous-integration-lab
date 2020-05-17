@@ -1,8 +1,9 @@
 ---
 - name: Instal dependencies
   apt:
-    name: openjdk-11-jdk
-    state: present
+    pkg: 
+    - openjdk-11-jdk
+    - unzip
     update_cache: yes
 
 - name: "Make sure {{ install_dir.linux }} directory exists"
