@@ -48,7 +48,7 @@ jenkins:
         ephemeralOSDisk: false
         executeInitScriptAsRoot: true
         imageTopLevelType: "basic"
-        installDocker: false
+        installDocker: true
         installGit: false
         installMaven: false
         javaPath: "java"
