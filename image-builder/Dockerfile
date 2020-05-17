@@ -8,6 +8,6 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
 RUN pip install ansible[azure]==2.8.0 pywinrm
 
 # Install Packer
-RUN wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
+RUN wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
     && unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
     && rm -rf packer_${PACKER_VERSION}_linux_amd64.zip
