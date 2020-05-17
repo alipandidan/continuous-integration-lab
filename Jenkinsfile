@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('Build Image') {
             steps {   
-                sh 'date'
+                sh 'false'
             }
             post {
                 always {
