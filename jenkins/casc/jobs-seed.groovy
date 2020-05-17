@@ -17,3 +17,24 @@ orphanedItemStrategy {
 //     periodic(5)
 // }
 }
+
+pipelineJob('UbuntuImageBuilder') {
+    parameters {
+        stringParam('imageName', null, 'Image name to be created')
+    }
+    definition {
+    cpsScm {
+        scm {
+        git {
+            remote {
+                github('pandidan/swedbank-exercise')
+                credentials('github-credentials')
+            }
+            branches('master')
+            scriptPath('image-builder/Jenkinsfile')
+            extensions { }  // required as otherwise it may try to tag the repo
+        }
+        }
+    }
+    }
+}

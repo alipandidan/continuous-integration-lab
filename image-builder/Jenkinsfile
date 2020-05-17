@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace 'image_builder'
+        }
+    }
+
+    stages {
+        stage ('Build Image') {
+            steps {   
+                script {
+
+                    def packerAnsbile = docker.build("packer-ansible") 
+
+                    packerAnsbile.inside {
+                        sh 'packer --version'
+                    }
+
+                    // docker.image('ubuntu:18.04').inside {
+                    //     sh 'ls'
+                    // }
+                }
+                
+            }
+            post {
+                always {
+                    cleanWs()
+                }
+            }
+        }
+    }
+}
