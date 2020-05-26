@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Build Image') {
             steps {   
-                sh 'whomai'
+                sh 'ls'
             }
             post {
                 always {
