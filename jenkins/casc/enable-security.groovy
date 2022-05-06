@@ -1,3 +1,5 @@
+// https://github.com/thbkrkr/jks/blob/master/init.groovy.d/1-create-admin-user.groovy
+
 import jenkins.model.*
 import hudson.security.*
 

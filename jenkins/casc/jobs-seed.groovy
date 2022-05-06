@@ -1,21 +1,20 @@
 multibranchPipelineJob('TestJob') {
-branchSources {
-    github {
-        // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
-        id('12312313') // IMPORTANT: use a constant and unique identifier
-        scanCredentialsId('github-credentials')
-        repoOwner('pandidan')
-        repository('continuous-integration-lab')
+    branchSources {
+        github {
+            id('12312313') // IMPORTANT: use a constant and unique identifier
+            scanCredentialsId('github-credentials')
+            repoOwner('alipandidan')
+            repository('continuous-integration-lab')
+        }
     }
-}
-orphanedItemStrategy {
-    discardOldItems {
-        numToKeep(10)
+    orphanedItemStrategy {
+        discardOldItems {
+            numToKeep(10)
+        }
     }
-}
-// triggers {
-//     periodic(5)
-// }
+    // triggers {
+    //     periodic(5)
+    // }
 }
 
 pipelineJob('UbuntuImageBuilder') {
@@ -27,12 +26,11 @@ pipelineJob('UbuntuImageBuilder') {
         scm {
         git {
             remote {
-                github('pandidan/continuous-integration-lab')
+                github('alipandidan/continuous-integration-lab')
                 credentials('github-credentials')
             }
-            branches('master')
+            branches('ea')
             scriptPath('image-builder/Jenkinsfile')
-            extensions { }  // required as otherwise it may try to tag the repo
         }
         }
     }
