@@ -1,10 +1,10 @@
-multibranchPipelineJob('TestJob') {
+multibranchPipelineJob('makefile-example') {
     branchSources {
         github {
             id('12312313') // IMPORTANT: use a constant and unique identifier
             scanCredentialsId('github-credentials')
             repoOwner('alipandidan')
-            repository('continuous-integration-lab')
+            repository('makefile-example')
         }
     }
     orphanedItemStrategy {
