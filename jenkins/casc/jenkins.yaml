@@ -31,7 +31,6 @@ jenkins:
       cloudTags:
       - name: "department"
         value: "devops"
-      configurationStatus: "pass"
       deploymentTimeout: 1200
       maxVirtualMachinesLimit: 10
       newResourceGroupName: "jenkins-agents"
@@ -39,43 +38,37 @@ jenkins:
       vmTemplates:
       - agentLaunchMethod: "SSH"
         agentWorkspace: "/tmp/jenkins"
-        builtInImage: "Ubuntu 16.04 LTS"
+        builtInImage: "Ubuntu 20.04 LTS"
         credentialsId: "jenkins-agents-credentials"
         diskType: "managed"
         doNotUseMachineIfInitFails: true
-        enableMSI: false
-        enableUAMI: false
-        ephemeralOSDisk: false
         executeInitScriptAsRoot: true
+        imageReference:
+          version: "latest"
         imageTopLevelType: "basic"
         installDocker: true
-        installGit: false
-        installMaven: false
         javaPath: "java"
         labels: "ubuntu"
-        location: "North Europe"
+        location: "East Asia"
         newStorageAccountName: "realjenkinsstorag"
         noOfParallelJobs: 1
-        osDiskSize: 0
         osType: "Linux"
         preInstallSsh: true
         retentionStrategy:
           azureVMCloudRetentionStrategy:
             idleTerminationMinutes: 10
-        shutdownOnIdle: false
         storageAccountNameReferenceType: "new"
-        storageAccountType: "Premium_LRS"
-        templateDisabled: false
+        storageAccountType: "Standard_LRS"
         templateName: "ubuntu"
-        usageMode: "Only build jobs with label expressions matching this node"
-        usePrivateIP: false
+        usageMode: EXCLUSIVE
         virtualMachineSize: "Standard_B1s"
+
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
-  - name: "master"
+  - name: "built-in"
   - name: "ubuntu"
   markupFormatter: "plainText"
   mode: NORMAL
@@ -108,8 +101,6 @@ security:
   sSHD:
     port: -1
 unclassified:
-  appInsightsGlobalConfig:
-    appInsightsEnabled: true
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
@@ -121,7 +112,7 @@ unclassified:
     healthMetrics:
     - worstChildHealthMetric:
         recursive: true
-  extendedEmailPublisher:
+  email-ext:
     adminRequiredForTemplateTesting: false
     allowUnregisteredEnabled: false
     charset: "UTF-8"
@@ -133,7 +124,6 @@ unclassified:
     maxAttachmentSize: -1
     maxAttachmentSizeMb: 0
     precedenceBulk: false
-    useSsl: false
     watchingEnabled: false
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
@@ -161,7 +151,7 @@ unclassified:
               traits:
               - gitHubBranchDiscovery:
                   strategyId: 3
-              - originPullRequestDiscoveryTrait:
+              - gitHubPullRequestDiscovery:
                   strategyId: 1
   location:
     adminAddress: "admin@domain.local"
@@ -172,7 +162,7 @@ unclassified:
     useTls: false
   pollSCM:
     pollingThreadCount: 10
-  timestamperConfig:
+  timestamper:
     allPipelines: false
     elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
     systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
