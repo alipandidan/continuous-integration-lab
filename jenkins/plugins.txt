@@ -17,3 +17,4 @@ timestamper
 email-ext
 docker-commons
 docker-workflow
+ws-cleanup
