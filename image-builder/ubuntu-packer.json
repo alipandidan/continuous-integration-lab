@@ -1,6 +1,6 @@
 {
     "variables": {
-      "azure_resource_group": "jenkins-vm-images",
+      "azure_resource_group": "jenkins-agents",
       "azure_tenant_id": "{{env `AZURE_TENANT_ID`}}",
       "azure_client_id": "{{env `AZURE_CLIENT_ID`}}",
       "azure_subscription_id": "{{env `AZURE_SUBSCRIPTION_ID`}}",
@@ -20,13 +20,13 @@
       "os_type": "Linux",
       "image_publisher": "Canonical",
       "image_offer": "UbuntuServer",
-      "image_sku": "18.04-LTS",
+      "image_sku": "20.04-LTS",
 
       "azure_tags": {
-          "department": "devops"
+          "department": "test"
       },
 
-      "location": "North Europe",
+      "location": "East Asia",
       "vm_size": "Standard_B1s"
     }],
     "provisioners": [{
