@@ -31,6 +31,7 @@ jenkins:
       cloudTags:
       - name: "department"
         value: "devops"
+      configurationStatus: "pass"
       deploymentTimeout: 1200
       maxVirtualMachinesLimit: 10
       newResourceGroupName: "jenkins-agents"
@@ -43,6 +44,7 @@ jenkins:
         diskType: "managed"
         doNotUseMachineIfInitFails: true
         executeInitScriptAsRoot: true
+        existingStorageAccountName: "realjenkinsstorag"
         imageReference:
           version: "latest"
         imageTopLevelType: "basic"
@@ -62,7 +64,31 @@ jenkins:
         templateName: "ubuntu"
         usageMode: EXCLUSIVE
         virtualMachineSize: "Standard_B1s"
-
+      - agentLaunchMethod: "SSH"
+        agentWorkspace: "/tmp/jenkins"
+        builtInImage: "Ubuntu 20.04 LTS"
+        credentialsId: "jenkins-agents-credentials"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        executeInitScriptAsRoot: true
+        existingStorageAccountName: "realjenkinsstorag"
+        imageReference:
+          id: "/subscriptions/576874ae-ad20-4d50-b6c6-7d75cf418b04/resourceGroups/jenkins-vm-images/providers/Microsoft.Compute/images/ubuntu-gcc-3"
+        imageTopLevelType: "advanced"
+        javaPath: "java"
+        labels: "cpp gcc"
+        location: "East Asia"
+        maximumDeploymentSize: 10
+        noOfParallelJobs: 1
+        osType: "Linux"
+        retentionStrategy:
+          azureVMCloudRetentionStrategy:
+            idleTerminationMinutes: 10
+        storageAccountNameReferenceType: "existing"
+        storageAccountType: "Standard_LRS"
+        templateName: "cpp"
+        usageMode: EXCLUSIVE
+        virtualMachineSize: "Standard_B1s"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
