@@ -13,7 +13,7 @@ RUN apt-get update -q && apt-get install --no-install-recommends -y software-pro
                                                                     sshpass
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
-RUN pip install ansible[azure]==2.8.0 pywinrm
+RUN pip install ansible[azure]==2.10.0 pywinrm
 
 # Install Packer
 RUN wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
